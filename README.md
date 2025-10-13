@@ -18,6 +18,11 @@ Each report includes:
 - **Time Spent**  
 - **Status**
 
+
+
+![Report List Page](./storage/app/public/images/DailyReport%20-%20Report%20List.png)
+![Report List Page](./storage/app/public/images/DailyReport%20-%20Report%20Details.png)
+![Report List Page](./storage/app/public/images/DailyReport%20-%20New%20Report.png)
 ---
 
 ## 🎯 Purpose
