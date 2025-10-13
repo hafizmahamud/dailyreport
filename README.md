@@ -20,9 +20,10 @@ Each report includes:
 
 
 
-![Report List Page](./storage/app/public/images/DailyReport%20-%20Report%20List.png)
-![Report List Page](./storage/app/public/images/DailyReport%20-%20Report%20Details.png)
-![Report List Page](./storage/app/public/images/DailyReport%20-%20New%20Report.png)
+![Report List Page](./public/images/DailyReport%20-%20Report%20List.png)
+![Report Details Page](./public/images/DailyReport%20-%20Report%20Details.png)
+![New Report Page](./public/images/DailyReport%20-%20New%20Report.png)
+
 ---
 
 ## 🎯 Purpose
