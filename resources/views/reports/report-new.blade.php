@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
+        <script src="//unpkg.com/alpinejs" defer></script>
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,7 +21,7 @@
     </head>
     <body class="lg:max-w-4xl justify-center items-center min-h-screen mx-auto p-6 bg-gray-50">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
+           <!--  @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
@@ -47,75 +47,57 @@
                         @endif
                     @endauth
                 </nav>
-            @endif
+            @endif -->
         </header>
-        <div class="flex gap-3 max-w-sm">
-        <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600">New Report</button>
-        </div>
         <div>
               <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
                 <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
+                Create New Report
                 </h2>
             </div>
-            <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
+                <div class="border-t border-gray-200">
+                    <div class="p-6 space-y-6">
+        <form action="{{ route('reports.store') }}" method="POST" class="grid grid-cols-6 gap-6">
+                @csrf
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="task_name" class="text-sm font-medium text-gray-900 block mb-2">Task Name</label>
+                    <input type="text" name="task_name" id="task_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required="">
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="project_name" class="text-sm font-medium text-gray-900 block mb-2">Project Name</label>
+                    <input type="text" name="project_name" id="project_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required="">
+                </div>
+                <div class="col-span-full">
+                    <label for="description" class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+                    <textarea id="description" name="description" id="description" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" ></textarea>
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                    <label for="time_spent" class="text-sm font-medium text-gray-900 block mb-2">Time Spent</label>
+                    <input type="text" name="time_spent" id="time_spent" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required="">
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                    <label for="status" class="text-sm font-medium text-gray-900 block mb-2">Status</label>
+                    <select
+                        class="appearance-none w-48 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        name="status">
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+                <input type="submit" value ="Submit" class="mt-5 bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 cursor-pointer">
+                <a href="{{ route('reports.list') }}" class=" bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+                ← Back to Reports</a>
+        </form>
+    </div>
+               
+            </div>
         </div>
 
         
-        <div>
-              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
-                <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
-                </h2>
-            </div>
-            <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
-                        </div>
-                       <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif

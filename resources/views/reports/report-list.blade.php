@@ -21,7 +21,8 @@
     </head>
     <body class="lg:max-w-4xl justify-center items-center min-h-screen mx-auto p-6 bg-gray-50">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
+            <h1 class="text-2xl font-semibold mb-16">Daily Reports</h1>
+            <!-- @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
@@ -47,75 +48,39 @@
                         @endif
                     @endauth
                 </nav>
-            @endif
+            @endif -->
         </header>
         <div class="flex gap-3 max-w-sm">
-        <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600">New Report</button>
+        <a href="{{ url('/report-new') }}" class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600">New Report</a>
         </div>
         <div>
-              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
+              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-3">
                 <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
+                
                 </h2>
             </div>
+            @foreach($reports as $report)
             <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
                 <li class="border-t border-gray-200">
                     <div class="px-4 py-5 sm:px-6">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $report->task_name }}</h3>
+                            
+                        </div>
+                        <div>
+                            <p class="font-normal leading-6 font-medium text-gray-900">{{ $report->created_at->format('Y-m-d') }}</p>     
                         </div>
                         <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
+                            
+                            <a href="{{ route('reports.show', $report->id ) }}" class="font-medium text-indigo-600">Show</a>
+                            <a href="#" class="font-medium text-red-600">Delete</a>
                         </div>
                     </div>
                 </li>
             </ul>
+            @endforeach
         </div>
 
-        
-        <div>
-              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
-                <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
-                </h2>
-            </div>
-            <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
-                        </div>
-                       <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif

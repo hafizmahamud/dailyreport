@@ -21,6 +21,7 @@
     </head>
     <body class="lg:max-w-4xl justify-center items-center min-h-screen mx-auto p-6 bg-gray-50">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+            <!-- 
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
@@ -47,75 +48,68 @@
                         @endif
                     @endauth
                 </nav>
-            @endif
+            @endif -->
         </header>
-        <div class="flex gap-3 max-w-sm">
-        <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600">New Report</button>
-        </div>
-        <div>
-              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
-                <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
-                </h2>
-            </div>
-            <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">
+      Report Details
+    </h1>
 
+    <!-- Report Info -->
+    <div class="space-y-4">
+      <div>
+        <p class="text-gray-500 text-sm uppercase">Task Name</p>
+        <p class="text-lg font-medium text-gray-900">{{ $report->task_name }}</p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm uppercase">Project Name</p>
+        <p class="text-lg font-medium text-gray-900">{{ $report->project_name }}</p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm uppercase">Description</p>
+        <p class="text-gray-700 leading-relaxed">{{ $report->description }}</p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm uppercase mb-3">Status</p>
+        <span class="
+          px-5 py-1 rounded-full text-sm font-medium
+          @if($report->status == 'Resolved') bg-green-100 text-green-800
+          @elseif($report->status == 'In Progress') bg-blue-100 text-blue-800
+          @elseif($report->status == 'Pending') bg-yellow-100 text-yellow-800
+          @elseif($report->status == 'Scheduled') bg-purple-100 text-purple-800
+          @else bg-gray-100 text-gray-800
+          @endif
+        ">
+          {{ $report->status }}
+        </span>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm uppercase">Time Spent</p>
+        <p class="text-gray-900 font-medium">{{ $report->time_spent }} hours</p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm uppercase">Date</p>
+        <p class="text-gray-900 font-medium">
+          {{ $report->created_at->format('F j, Y') }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-8 text-right">
+      <a href="{{ route('reports.list') }}"
+         class="inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+         ← Back to Reports
+      </a>
+    </div>
+  </div>
         
-        <div>
-              <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 mt-16">
-                <h2 class="text-lg font-semibold text-gray-800">
-                6 October 2025 → 10 October 2025
-                </h2>
-            </div>
-            <ul class="bg-white shadow overflow-hidden sm:rounded-md max-w-xxl mt-5">
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">10 October 2025</h3>
-                        </div>
-                       <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="border-t border-gray-200">
-                    <div class="px-4 py-5 sm:px-6">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">11 October 2025</h3>
-                        </div>
-                        <div class="flex space-x-4"> <!-- This makes Edit & Delete side-by-side -->
-                                <a href="#" class="font-medium text-indigo-600">Edit</a>
-                                <a href="#" class="font-medium text-red-600">Delete</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
