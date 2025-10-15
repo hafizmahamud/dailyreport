@@ -1,0 +1,1 @@
+<h1>Empty page for Git test</h1>
