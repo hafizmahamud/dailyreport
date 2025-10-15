@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@YOUR_SERVER_IP "
+          ssh -o StrictHostKeyChecking=no gittestoskydev@54.66.0.92 "
             cd /home/gittestoskydev/git-test.osky.dev/ &&
             git pull origin dailyreport_v1 &&
             composer install --no-dev --no-interaction --prefer-dist &&
